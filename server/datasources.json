@@ -1,0 +1,13 @@
+{
+  "db": {
+    "host": "database",
+    "port": 27017,
+    "url": "",
+    "database": "loop-blog",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "useNewUrlParser": true,
+    "connector": "mongodb"
+  }
+}

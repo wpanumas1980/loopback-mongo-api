@@ -1,0 +1,38 @@
+version: "3"
+services: 
+  api-server:
+    image: loopback-mongo-api
+    restart: always
+    ports: 
+      - "4000:3000"
+    networks: 
+      - mern-app
+    depends_on: 
+      - database
+  database:
+    image: mongo
+    restart: always
+    ports: 
+      - "27017:27017"
+    networks: 
+      - mern-app
+    volumes: 
+      - lb-data:/data/db
+  web-service:
+    image: mongo-express
+    restart: always
+    ports: 
+      - "8081:8081"
+    networks: 
+      - mern-app
+    environment: 
+      ME_CONFIG_OPTIONS_EDITORTHEME: ambiance
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: pass
+      ME_CONFIG_MONGODB_URL: mongodb://database
+networks:
+  mern-app:
+    driver: bridge 
+volumes: 
+  lb-data:
+    driver: local
